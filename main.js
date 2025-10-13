@@ -63,7 +63,7 @@ loader.load(modelUrl, (gltf) => {
   model.position.sub(center);
 
   // Docelowa wysokość modelu w scenie (w jednostkach 3D)
-  const targetHeight = 3.0; // zwiększ/zmniejsz według uznania
+  const targetHeight = 9.0; // zwiększ/zmniejsz według uznania
   if (size.y > 0) {
     const scale = targetHeight / size.y;
     model.scale.setScalar(scale);
