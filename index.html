@@ -1,38 +1,47 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Sekrety Spokojnego Snu — Ebook 3D</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
-  <link href="style.css" rel="stylesheet" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sekrety Spokojnego Snu - Ebook 3D</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <h1>Sekrety Spokojnego Snu</h1>
-    <p class="lead">Jak zasypiać szybciej i spać całą noc — poznaj praktyczny e-book, który zmieni Twoje noce w spokojne chwile relaksu.</p>
-    <a class="btn" href="TUTAJ_WKLEJ_LINK_Z_PAYHIP" target="_blank" rel="noopener">Kup e-book</a>
-  </header>
+    
+    <div class="stars-container">
+        <div class="stars-layer"></div>
+    </div>
+    <header>
+        <h1>Sekrety Spokojnego Snu</h1>
+        <p class="lead">Jak zasypiać szybciej i spać całą noc – poznaj praktyczny e-book, który zmieni Twoje noce w spokojne chwile relaksu.</p>
+        <a href="#" class="btn">Kup e-book</a>
+    </header>
 
-  <div class="viewer">
-    <canvas id="ebook3D"></canvas>
-  </div>
+    <div class="viewer">
+        <canvas id="ebook3D"></canvas>
+    </div>
 
-  <section>
-    <h2>Co znajdziesz w środku?</h2>
-    <p>Techniki relaksacyjne, oddechowe i plan 7 dni do odzyskania spokojnego snu.</p>
-  </section>
+    <section>
+        <h2>Co znajdziesz w środku?</h2>
+        <p>Nauka, techniki, badania i cudowny plan – to wszystko dla osiągnięcia spokojnego i głębokiego snu.</p>
+        </section>
 
-  <footer>© 2025 Sekrety Spokojnego Snu | Kontakt: twojemail@example.com</footer>
+    <footer>
+        <p>&copy; 2024 Twoja Firma. Wszelkie prawa zastrzeżone.</p>
+    </footer>
 
-  <script type="importmap">
-  {
-    "imports": {
-      "three": "https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.module.js",
-      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.155.0/examples/jsm/"
-    }
-  }
-  </script>
-  <script type="module" src="main.js"></script>
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.165.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.165.0/examples/jsm/"
+            }
+        }
+    </script>
+    
+    <script type="module" src="main.js"></script>
 </body>
 </html>

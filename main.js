@@ -26,6 +26,12 @@ const rim = new THREE.DirectionalLight(0x99bbff, 0.4);
 rim.position.set(-3, 2, -2);
 scene.add(rim);
 
+// ⭐ DODANE: Dodatkowe światło wypełniające, aby rozjaśnić model i zwalczyć "bladość"
+const fillLight = new THREE.DirectionalLight(0xffffee, 0.7); 
+fillLight.position.set(-5, 5, 5); 
+scene.add(fillLight);
+// ⭐ KONIEC DODATKU
+
 // Ładowanie modelu
 const loader = new GLTFLoader();
 const modelUrl = './ebook.glb';
@@ -61,15 +67,14 @@ loader.load(modelUrl, (gltf) => {
     // KLUCZOWE CENTROWANIE: Przenieś środek modelu do (0,0,0)
     model.position.sub(center);
 
-    // Docelowa wysokość modelu w scenie (powrót do większej skali)
+    // Docelowa wysokość modelu w scenie
     const targetHeight = 0.1; 
     if (size.y > 0) {
         const scale = targetHeight / size.y;
         model.scale.setScalar(scale);
     }
 
-    // ⭐ KLUCZOWA POPRAWKA: Ręczne obniżenie modelu, aby wyśrodkować go wizualnie
-    // Zmieniono z '0' na '-0.25'
+    // Ręczna korekta pionowa
     model.position.y = -0.05; 
 
     // Opcjonalny delikatny “tilt”

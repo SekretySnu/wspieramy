@@ -68,7 +68,6 @@ canvas {
     height: 540px;
     max-width: 90vw;
     border-radius: 14px;
-    /* Usunięto: box-shadow i background, aby usunąć ciemniejszy prostokąt */
     display: block;
 }
 
@@ -98,3 +97,41 @@ footer {
     h1 { font-size: 1.9rem; }
     canvas { height: 420px; }
 }
+
+/* --- ⭐ TŁO GWIAZDEK CSS (na całej stronie) ⭐ --- */
+
+.stars-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; 
+    pointer-events: none;
+}
+
+.stars-layer {
+    width: 1px;
+    height: 1px;
+    background: transparent;
+    /* Bardzo długa lista cieni do symulowania wielu gwiazdek */
+    box-shadow: 
+        10px 10px #FFF, 50px 50px #FFF, 90px 10px #FFF, 130px 50px #FFF, 170px 10px #FFF, 210px 50px #FFF, 250px 10px #FFF, 290px 50px #FFF, 330px 10px #FFF, 370px 50px #FFF, 410px 10px #FFF, 450px 50px #FFF, 490px 10px #FFF, 530px 50px #FFF, 570px 10px #FFF, 610px 50px #FFF, 650px 10px #FFF, 690px 50px #FFF, 730px 10px #FFF, 770px 50px #FFF, 810px 10px #FFF, 850px 50px #FFF, 890px 10px #FFF, 930px 50px #FFF, 970px 10px #FFF, 1010px 50px #FFF, 1050px 10px #FFF, 1090px 50px #FFF, 1130px 10px #FFF, 1170px 50px #FFF, 1210px 10px #FFF, 1250px 50px #FFF, 1290px 10px #FFF, 1330px 50px #FFF, 1370px 10px #FFF, 1410px 50px #FFF, 1450px 10px #FFF, 1490px 50px #FFF, 1530px 10px #FFF, 1570px 50px #FFF, 1610px 10px #FFF, 1650px 50px #FFF, 1690px 10px #FFF, 1730px 50px #FFF, 1770px 10px #FFF, 1810px 50px #FFF, 1850px 10px #FFF, 1890px 50px #FFF, 1930px 10px #FFF, 1970px 50px #FFF, 2010px 10px #FFF, 2050px 50px #FFF, 2090px 10px #FFF, 2130px 50px #FFF, 2170px 10px #FFF, 2210px 50px #FFF, 2250px 10px #FFF, 2290px 50px #FFF, 2330px 10px #FFF, 2370px 50px #FFF, 2410px 10px #FFF, 2450px 50px #FFF, 2490px 10px #FFF, 2530px 50px #FFF, 2570px 10px #FFF, 2610px 50px #FFF, 2650px 10px #FFF, 2690px 50px #FFF, 2730px 10px #FFF, 2770px 50px #FFF, 2810px 10px #FFF, 2850px 50px #FFF, 2890px 10px #FFF, 2930px 50px #FFF, 2970px 10px #FFF, 3010px 50px #FFF, 3050px 10px #FFF, 3090px 50px #FFF, 3130px 10px #FFF, 3170px 50px #FFF, 3210px 10px #FFF, 3250px 50px #FFF, 3290px 10px #FFF, 3330px 50px #FFF, 3370px 10px #FFF, 3410px 50px #FFF, 3450px 10px #FFF, 3490px 50px #FFF, 3530px 10px #FFF, 3570px 50px #FFF, 3610px 10px #FFF, 3650px 50px #FFF, 3690px 10px #FFF, 3730px 50px #FFF, 3770px 10px #FFF, 3810px 50px #FFF, 3850px 10px #FFF, 3890px 50px #FFF, 3930px 10px #FFF, 3970px 50px #FFF, 4010px 10px #FFF, 4050px 50px #FFF, 4090px 10px #FFF, 4130px 50px #FFF, 4170px 10px #FFF, 4210px 50px #FFF, 4250px 10px #FFF, 4290px 50px #FFF, 4330px 10px #FFF, 4370px 50px #FFF, 4410px 10px #FFF, 4450px 50px #FFF, 4490px 10px #FFF, 4530px 50px #FFF, 4570px 10px #FFF, 4610px 50px #FFF, 4650px 10px #FFF, 4690px 50px #FFF, 4730px 10px #FFF, 4770px 50px #FFF, 4810px 10px #FFF, 4850px 50px #FFF, 4890px 10px #FFF, 4930px 50px #FFF, 4970px 10px #FFF, 5010px 50px #FFF, 5050px 10px #FFF, 5090px 50px #FFF, 5130px 10px #FFF, 5170px 50px #FFF, 5210px 10px #FFF, 5250px 50px #FFF, 5290px 10px #FFF, 5330px 50px #FFF, 5370px 10px #FFF, 5410px 50px #FFF, 5450px 10px #FFF, 5490px 50px #FFF, 5530px 10px #FFF, 5570px 50px #FFF, 5610px 10px #FFF, 5650px 50px #FFF, 5690px 10px #FFF, 5730px 50px #FFF, 5770px 10px #FFF, 5810px 50px #FFF, 5850px 10px #FFF, 5890px 50px #FFF, 5930px 10px #FFF, 5970px 50px #FFF, 6010px 10px #FFF, 6050px 50px #FFF, 6090px 10px #FFF, 6130px 50px #FFF, 6170px 10px #FFF, 6210px 50px #FFF, 6250px 10px #FFF, 6290px 50px #FFF, 6330px 10px #FFF, 6370px 50px #FFF, 6410px 10px #FFF, 6450px 50px #FFF, 6490px 10px #FFF, 6530px 50px #FFF, 6570px 10px #FFF, 6610px 50px #FFF, 6650px 10px #FFF, 6690px 50px #FFF, 6730px 10px #FFF, 6770px 50px #FFF, 6810px 10px #FFF, 6850px 50px #FFF, 6890px 10px #FFF, 6930px 50px #FFF, 6970px 10px #FFF, 7010px 50px #FFF, 7050px 10px #FFF, 7090px 50px #FFF, 7130px 10px #FFF, 7170px 50px #FFF, 7210px 10px #FFF, 7250px 50px #FFF, 7290px 10px #FFF, 7330px 50px #FFF, 7370px 10px #FFF, 7410px 50px #FFF, 7450px 10px #FFF, 7490px 50px #FFF, 7530px 10px #FFF, 7570px 50px #FFF, 7610px 10px #FFF, 7650px 50px #FFF, 7690px 10px #FFF, 7730px 50px #FFF, 7770px 10px #FFF, 7810px 50px #FFF, 7850px 10px #FFF, 7890px 50px #FFF, 7930px 10px #FFF, 7970px 50px #FFF, 8010px 10px #FFF, 8050px 50px #FFF, 8090px 10px #FFF, 8130px 50px #FFF, 8170px 10px #FFF, 8210px 50px #FFF, 8250px 10px #FFF, 8290px 50px #FFF, 8330px 10px #FFF, 8370px 50px #FFF, 8410px 10px #FFF, 8450px 50px #FFF, 8490px 10px #FFF, 8530px 50px #FFF, 8570px 10px #FFF, 8610px 50px #FFF, 8650px 10px #FFF, 8690px 50px #FFF, 8730px 10px #FFF, 8770px 50px #FFF, 8810px 10px #FFF, 8850px 50px #FFF, 8890px 10px #FFF, 8930px 50px #FFF, 8970px 10px #FFF, 9010px 50px #FFF, 9050px 10px #FFF, 9090px 50px #FFF, 9130px 10px #FFF, 9170px 50px #FFF, 9210px 10px #FFF, 9250px 50px #FFF, 9290px 10px #FFF, 9330px 50px #FFF, 9370px 10px #FFF, 9410px 50px #FFF, 9450px 10px #FFF, 9490px 50px #FFF, 9530px 10px #FFF, 9570px 50px #FFF, 9610px 10px #FFF, 9650px 50px #FFF, 9690px 10px #FFF, 9730px 50px #FFF, 9770px 10px #FFF, 9810px 50px #FFF, 9850px 10px #FFF, 9890px 50px #FFF, 9930px 10px #FFF, 9970px 50px #FFF;
+    
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 2000px; /* Obszar musi być wystarczająco duży, by pokryć całe okno */
+    height: 2000px;
+    
+    /* Animacja migotania */
+    animation: twinkle 15s infinite alternate;
+}
+
+@keyframes twinkle {
+    0%   { opacity: 0.8; }
+    50%  { opacity: 0.4; }
+    100% { opacity: 0.9; }
+}
+
+/* --- KONIEC TŁA GWIAZDEK CSS --- */
