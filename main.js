@@ -3,14 +3,13 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
 const canvas = document.getElementById('ebook3D');
 const scene = new THREE.Scene();
-scene.background = null; // Ustawienie na przezroczystość, by nie było prostokąta
+scene.background = null; // Tło przezroczyste
 
 // Pobranie aktualnych rozmiarów canvasa
 const width = canvas.clientWidth || 360;
 const height = canvas.clientHeight || 480;
 
 const camera = new THREE.PerspectiveCamera(40, width / height, 0.1, 100);
-// Pozycja kamery będzie dostosowana automatycznie, usuwamy stałe wartości
 
 const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
 renderer.setSize(width, height, false);
@@ -60,15 +59,18 @@ loader.load(modelUrl, (gltf) => {
     box.getCenter(center);
 
     // KLUCZOWE CENTROWANIE: Przenieś środek modelu do (0,0,0)
-    // Zapewnia to, że model będzie na środku sceny (X=0, Y=0, Z=0)
     model.position.sub(center);
 
-    // Docelowa wysokość modelu w scenie (zmieniona dla większego rozmiaru)
+    // Docelowa wysokość modelu w scenie (możesz dopasować rozmiar)
     const targetHeight = 2.0; 
     if (size.y > 0) {
         const scale = targetHeight / size.y;
         model.scale.setScalar(scale);
     }
+
+    // ⭐ KLUCZOWA POPRAWKA: Ręczne obniżenie modelu, aby wyśrodkować go wizualnie
+    // Zmieniamy model.position.y o ujemną wartość (np. -0.2). Dopasuj, jeśli jest za nisko/za wysoko.
+    model.position.y -= 0.25; 
 
     // Opcjonalny delikatny “tilt”
     model.rotation.y = Math.PI / 6;
@@ -83,9 +85,9 @@ loader.load(modelUrl, (gltf) => {
     let dist = (largestDim / 2) / Math.tan(fov / 2);
     dist *= 1.2; // Zmniejszony margines (większy zoom)
 
-    // Ustawienie kamery na osi Y = 0 (środek ekranu) i przesunięcie na osi Z
+    // Kamera patrzy na środek (Y=0)
     camera.position.set(0, 0, dist); 
-    camera.lookAt(0, 0, 0); // Kamera patrzy na środek sceny (gdzie jest wycentrowany model)
+    camera.lookAt(0, 0, 0); 
 
     // 4) Start animacji
     function animate() {
