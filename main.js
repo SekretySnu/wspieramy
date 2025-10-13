@@ -60,7 +60,7 @@ loader.load(modelUrl, (gltf) => {
   box.getCenter(center);
 
   // Przenieś środek modelu do (0,0,0)
-  model.position.sub(center);
+  model.position.sub(0, -0.5, 0);
 
   // Docelowa wysokość modelu w scenie (w jednostkach 3D)
   const targetHeight = 3.0; // zwiększ/zmniejsz według uznania
