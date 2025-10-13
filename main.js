@@ -4,7 +4,6 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 const canvas = document.getElementById('ebook3D');
 const scene = new THREE.Scene();
 scene.background = null; // Tło przezroczyste
-print("..");
 
 // Pobranie aktualnych rozmiarów canvasa
 const width = canvas.clientWidth || 360;
@@ -62,16 +61,16 @@ loader.load(modelUrl, (gltf) => {
     // KLUCZOWE CENTROWANIE: Przenieś środek modelu do (0,0,0)
     model.position.sub(center);
 
-    // Docelowa wysokość modelu w scenie (możesz dopasować rozmiar)
-    const targetHeight = 0.75; 
+    // Docelowa wysokość modelu w scenie (powrót do większej skali)
+    const targetHeight = 2.0; 
     if (size.y > 0) {
         const scale = targetHeight / size.y;
         model.scale.setScalar(scale);
     }
 
     // ⭐ KLUCZOWA POPRAWKA: Ręczne obniżenie modelu, aby wyśrodkować go wizualnie
-    // Zmieniamy model.position.y o ujemną wartość (np. -0.2). Dopasuj, jeśli jest za nisko/za wysoko.
-    model.position.y -= 0; 
+    // Zmieniono z '0' na '-0.25'
+    model.position.y -= 0.25; 
 
     // Opcjonalny delikatny “tilt”
     model.rotation.y = Math.PI / 6;
