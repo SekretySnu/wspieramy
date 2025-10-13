@@ -1,74 +1,100 @@
 :root {
-      --night1: #101431;
-      --night2: #1e1f4b;
-      --accent: #8da7ff;
-      --text-light: #e6ebff;
-    }
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(160deg, var(--night1), var(--night2));
-      color: var(--text-light);
-      overflow-x: hidden;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-    header {
-      text-align: center;
-      padding: 90px 20px 30px;
-    }
-    h1 {
-      font-size: 2.6rem;
-      background: linear-gradient(90deg, #aabaff, #dce3ff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin: 0 0 16px;
-    }
-    p.lead {
-      font-size: 1.05rem;
-      opacity: 0.9;
-      max-width: 640px;
-      margin: 0 auto 20px;
-    }
-    .btn {
-      display: inline-block;
-      padding: 12px 34px;
-      background: var(--accent);
-      color: white;
-      border-radius: 999px;
-      text-decoration: none;
-      font-weight: 600;
-      box-shadow: 0 0 18px rgba(141,167,255,0.55);
-    }
+    /* Kolory nocy/ciemnego tła */
+    --night1: #101431;
+    --night2: #1e1f4b;
+    /* Kolor akcentu dla przycisku */
+    --accent: #8da7ff;
+    /* Kolor tekstu */
+    --text-light: #e6ebff;
+}
 
-    /* canvas container - center + responsive sizing */
-    .viewer {
-      display: flex;
-      justify-content: center;
-      margin: 36px 16px;
-    }
-    canvas {
-      width: 360px;
-      height: 480px;
-      max-width: 90vw;
-      border-radius: 14px;
-      box-shadow: 0 12px 40px rgba(10,12,30,0.6);
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.15));
-      display: block;
-    }
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    /* Gradient tła strony */
+    background: linear-gradient(160deg, var(--night1), var(--night2));
+    color: var(--text-light);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
 
-    section {
-      text-align: center;
-      padding: 54px 20px;
-      max-width: 900px;
-      margin: 0 auto;
-    }
-    h2 { font-size: 1.8rem; margin-bottom: 14px; color: #dfe6ff; }
-    footer { text-align:center; padding: 26px; opacity: 0.75; font-size: 0.9rem; }
+header {
+    text-align: center;
+    padding: 90px 20px 30px;
+}
 
-    /* small screens tweak */
-    @media (max-width: 480px) {
-      header { padding-top: 56px; }
-      h1 { font-size: 1.9rem; }
-      canvas { height: 420px; }
-    }
+h1 {
+    font-size: 2.6rem;
+    /* Gradient dla tytułu */
+    background: linear-gradient(90deg, #aabaff, #dce3ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 0 0 16px;
+}
+
+p.lead {
+    font-size: 1.05rem;
+    opacity: 0.9;
+    max-width: 640px;
+    margin: 0 auto 20px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 34px;
+    background: var(--accent);
+    color: white;
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 600;
+    box-shadow: 0 0 18px rgba(141,167,255,0.55);
+    transition: transform 0.2s;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+/* canvas container - center + responsive sizing */
+.viewer {
+    display: flex;
+    justify-content: center;
+    margin: 36px 16px;
+}
+
+canvas {
+    width: 360px;
+    height: 480px;
+    max-width: 90vw;
+    border-radius: 14px;
+    /* Usunięto: box-shadow i background, aby usunąć ciemniejszy prostokąt */
+    display: block;
+}
+
+section {
+    text-align: center;
+    padding: 54px 20px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+h2 { 
+    font-size: 1.8rem; 
+    margin-bottom: 14px; 
+    color: #dfe6ff; 
+}
+
+footer { 
+    text-align:center; 
+    padding: 26px; 
+    opacity: 0.75; 
+    font-size: 0.9rem; 
+}
+
+/* small screens tweak */
+@media (max-width: 480px) {
+    header { padding-top: 56px; }
+    h1 { font-size: 1.9rem; }
+    canvas { height: 420px; }
+}
