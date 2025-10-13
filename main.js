@@ -71,7 +71,7 @@ loader.load(modelUrl, (gltf) => {
 
     // ⭐ KLUCZOWA POPRAWKA: Ręczne obniżenie modelu, aby wyśrodkować go wizualnie
     // Zmieniamy model.position.y o ujemną wartość (np. -0.2). Dopasuj, jeśli jest za nisko/za wysoko.
-    model.position.y -= 1.25; 
+    model.position.y -= 0.75; 
 
     // Opcjonalny delikatny “tilt”
     model.rotation.y = Math.PI / 6;
