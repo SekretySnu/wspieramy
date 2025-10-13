@@ -3,84 +3,188 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Zasnę w 10 minut - Ebook o lepszym śnie</title>
+  <title>Zasnę w 10 minut — Ebook o lepszym śnie</title>
   <style>
-    body {
-      font-family: 'Helvetica', sans-serif;
+    :root {
+      --primary: #6a80f5;
+      --secondary: #b8c2ff;
+      --bg: #f5f7ff;
+      --text: #333;
+    }
+
+    * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      background-color: #f5f7fa;
-      color: #333;
-      text-align: center;
+      scroll-behavior: smooth;
     }
+
+    body {
+      font-family: "Inter", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
     header {
-      background-color: #5b8def;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
       color: white;
-      padding: 60px 20px;
+      text-align: center;
+      padding: 100px 20px 120px;
+      position: relative;
     }
+
+    header::after {
+      content: "";
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      width: 100%;
+      height: 60px;
+      background: white;
+      clip-path: ellipse(70% 100% at 50% 100%);
+    }
+
     header h1 {
-      font-size: 2.5em;
+      font-size: 3em;
+      margin-bottom: 15px;
     }
+
     header p {
       font-size: 1.2em;
+      max-width: 600px;
+      margin: 0 auto 40px;
+      opacity: 0.9;
     }
-    section {
-      padding: 40px 20px;
-      max-width: 700px;
-      margin: auto;
-      line-height: 1.6;
-    }
+
     .btn {
       display: inline-block;
-      background-color: #5b8def;
-      color: white;
-      padding: 15px 30px;
-      border-radius: 8px;
+      background: white;
+      color: var(--primary);
+      padding: 15px 40px;
+      border-radius: 50px;
       text-decoration: none;
-      font-weight: bold;
-      transition: background 0.3s;
+      font-weight: 600;
+      font-size: 1.1em;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      transition: all 0.3s;
     }
+
     .btn:hover {
-      background-color: #4475d9;
+      transform: translateY(-3px);
+      background: var(--secondary);
+      color: white;
     }
+
+    section {
+      padding: 80px 20px;
+      max-width: 900px;
+      margin: auto;
+      text-align: center;
+    }
+
+    h2 {
+      font-size: 2em;
+      margin-bottom: 20px;
+      color: var(--primary);
+    }
+
+    ul {
+      text-align: left;
+      display: inline-block;
+      margin-top: 20px;
+      font-size: 1.1em;
+    }
+
+    li {
+      margin-bottom: 10px;
+      padding-left: 1em;
+    }
+
+    .review {
+      background: white;
+      border-radius: 20px;
+      padding: 30px;
+      margin: 20px 0;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      font-style: italic;
+    }
+
     footer {
-      background-color: #eee;
-      padding: 20px;
+      background: #eee;
+      color: #666;
+      text-align: center;
+      padding: 30px;
       font-size: 0.9em;
-      color: #777;
+    }
+
+    /* Animacja pojawiania */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease-out;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Responsywność */
+    @media (max-width: 600px) {
+      header h1 { font-size: 2.2em; }
+      .btn { padding: 12px 30px; font-size: 1em; }
     }
   </style>
 </head>
 <body>
   <header>
     <h1>Zasnę w 10 minut</h1>
-    <p>Praktyczny e-book dla osób, które chcą wreszcie spać spokojnie.</p>
+    <p>Odkryj prosty, sprawdzony sposób na spokojny sen bez stresu i bez leków.</p>
     <a class="btn" href="TUTAJ_WKLEJ_LINK_Z_PAYHIP" target="_blank">Kup teraz</a>
   </header>
 
-  <section>
-    <h2>Co znajdziesz w e-booku?</h2>
-    <ul style="text-align:left; display:inline-block;">
-      <li>✔️ Plan 7 dni, który pomoże Ci szybciej zasnąć</li>
+  <section class="fade-in">
+    <h2>Co znajdziesz w środku?</h2>
+    <ul>
+      <li>✔️ 7-dniowy plan zasypiania</li>
       <li>✔️ Techniki oddechowe i relaksacyjne</li>
       <li>✔️ Wieczorny rytuał bez stresu</li>
-      <li>✔️ Porady jak wyciszyć myśli przed snem</li>
+      <li>✔️ Metody wyciszenia myśli</li>
     </ul>
   </section>
 
-  <section>
+  <section class="fade-in">
     <h2>Opinie czytelników</h2>
-    <blockquote>„W końcu zasypiam bez stresu! Ten e-book to był strzał w dziesiątkę.” — Ania</blockquote>
-    <blockquote>„Najlepiej wydane 39 zł w tym roku.” — Tomek</blockquote>
+    <div class="review">„W końcu zasypiam bez stresu! Ten e-book to był strzał w dziesiątkę.” — Ania</div>
+    <div class="review">„Nie wierzyłem, że coś tak prostego zadziała. Teraz śpię jak dziecko.” — Tomek</div>
   </section>
 
-  <section>
-    <h2>Cena: 39 zł</h2>
-    <a class="btn" href="TUTAJ_WKLEJ_LINK_Z_PAYHIP" target="_blank">Kup teraz</a>
+  <section class="fade-in">
+    <h2>O autorze</h2>
+    <p>Jestem pasjonatem zdrowego stylu życia i snu. Po latach problemów z bezsennością stworzyłem praktyczny przewodnik, który pomógł już setkom osób spokojnie zasypiać.</p>
+  </section>
+
+  <section class="fade-in">
+    <h2>Gotowy na spokojne noce?</h2>
+    <a class="btn" href="TUTAJ_WKLEJ_LINK_Z_PAYHIP" target="_blank">Kup e-book — 39 zł</a>
   </section>
 
   <footer>
-    <p>© 2025 Zasnę w 10 minut | Kontakt: twojemail@example.com</p>
+    © 2025 Zasnę w 10 minut | Kontakt: twojemail@example.com
   </footer>
+
+  <script>
+    // animacja pojawiania elementów
+    const elements = document.querySelectorAll('.fade-in');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    });
+    elements.forEach(el => observer.observe(el));
+  </script>
 </body>
 </html>
