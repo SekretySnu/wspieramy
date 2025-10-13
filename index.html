@@ -117,7 +117,7 @@
 
     // Tekstura (okładka e-booka)
     const loader = new THREE.TextureLoader();
-    loader.load('okladka.jpg', texture => {
+    loader.load('https://app.vectary.com/p/5R9iyMuPGb7gPMe3mds5fn', texture => {
       const geometry = new THREE.BoxGeometry(2, 2.8, 0.1);
       const materialFront = new THREE.MeshBasicMaterial({ map: texture });
       const materialSide = new THREE.MeshStandardMaterial({ color: 0x222244 });
