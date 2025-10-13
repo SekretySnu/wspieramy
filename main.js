@@ -33,19 +33,67 @@ const modelUrl = './ebook.glb';
 
 loader.load(modelUrl, (gltf) => {
   const model = gltf.scene;
-  model.scale.set(1.3, 1.3, 1.3);
-  model.position.set(0, -0.25, 0);
+
+  // 1) Ukryj helpery / linie / osie z eksportu:
+  model.traverse((child) => {
+    const n = (child.name || '').toLowerCase();
+    if (
+      child.type === 'Line' ||
+      child.type === 'LineSegments' ||
+      n.includes('helper') ||
+      n.includes('axis') ||
+      n.includes('gizmo') ||
+      n.includes('grid') ||
+      n.includes('floor') ||
+      n.includes('bounds') ||
+      n.includes('limit')
+    ) {
+      child.visible = false;
+    }
+  });
+
+  // 2) Automatyczne dopasowanie skali i wycentrowanie modelu:
+  const box = new THREE.Box3().setFromObject(model);
+  const size = new THREE.Vector3();
+  const center = new THREE.Vector3();
+  box.getSize(size);
+  box.getCenter(center);
+
+  // Przenieś środek modelu do (0,0,0)
+  model.position.sub(center);
+
+  // Docelowa wysokość modelu w scenie (w jednostkach 3D)
+  const targetHeight = 1.6; // zwiększ/zmniejsz według uznania
+  if (size.y > 0) {
+    const scale = targetHeight / size.y;
+    model.scale.setScalar(scale);
+  }
+
+  // Opcjonalny delikatny “tilt”
   model.rotation.y = Math.PI / 6;
+
   scene.add(model);
 
+  // 3) Ustaw kamerę tak, żeby na pewno objęła model:
+  // bierzemy większy z wymiarów X/Y, żeby ładnie wypełnić kadr
+  const largestDim = Math.max(size.x, size.y) * (model.scale.x || 1);
+  const fov = THREE.MathUtils.degToRad(camera.fov);
+  // odległość przy której największy wymiar mieści się w pionie
+  let dist = (largestDim / 2) / Math.tan(fov / 2);
+  dist *= 1.4; // mały margines
+
+  camera.position.set(0, 0.35, dist);
+  camera.lookAt(0, 0, 0);
+
+  // 4) Start animacji
   function animate() {
     requestAnimationFrame(animate);
-    // obrót wokół własnej osi + delikatne kołysanie
     model.rotation.y += 0.006;
     model.rotation.x = Math.sin(Date.now() * 0.001) * 0.03;
     renderer.render(scene, camera);
   }
   animate();
+
 }, (xhr) => {
   if (xhr && xhr.total) {
     const pct = Math.round((xhr.loaded / xhr.total) * 100);
@@ -53,13 +101,4 @@ loader.load(modelUrl, (gltf) => {
   }
 }, (error) => {
   console.error('❌ Błąd ładowania modelu:', error);
-});
-
-// Responsywność
-window.addEventListener('resize', () => {
-  const w = canvas.clientWidth || 360;
-  const h = canvas.clientHeight || 480;
-  camera.aspect = w / h;
-  camera.updateProjectionMatrix();
-  renderer.setSize(w, h, false);
 });
