@@ -110,9 +110,9 @@
     renderer.setPixelRatio(window.devicePixelRatio);
 
     // Oświetlenie
-    const ambient = new THREE.AmbientLight(0xffffff, 0.6);
+    const ambient = new THREE.AmbientLight(0xffffff, 0.8);
     const point = new THREE.PointLight(0xffffff, 1);
-    point.position.set(5, 5, 5);
+    point.position.set(3, 3, 3);
     scene.add(ambient, point);
 
     // Ładowanie modelu GLB
@@ -126,7 +126,7 @@
       // Animacja
       function animate() {
         requestAnimationFrame(animate);
-        model.rotation.y += 0.005;
+        model.rotation.y += 0.006;
         model.rotation.x = Math.sin(Date.now() * 0.001) * 0.05;
         renderer.render(scene, camera);
       }
