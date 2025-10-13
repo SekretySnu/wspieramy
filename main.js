@@ -62,7 +62,7 @@ loader.load(modelUrl, (gltf) => {
     model.position.sub(center);
 
     // Docelowa wysokość modelu w scenie (powrót do większej skali)
-    const targetHeight = 0.25; 
+    const targetHeight = 0.1; 
     if (size.y > 0) {
         const scale = targetHeight / size.y;
         model.scale.setScalar(scale);
@@ -70,7 +70,7 @@ loader.load(modelUrl, (gltf) => {
 
     // ⭐ KLUCZOWA POPRAWKA: Ręczne obniżenie modelu, aby wyśrodkować go wizualnie
     // Zmieniono z '0' na '-0.25'
-    model.position.y -= 0.25; 
+    model.position.y = -0.05; 
 
     // Opcjonalny delikatny “tilt”
     model.rotation.y = Math.PI / 6;

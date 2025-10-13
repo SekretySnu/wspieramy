@@ -64,8 +64,8 @@ p.lead {
 }
 
 canvas {
-    width: 360px;
-    height: 480px;
+    width: 420px;
+    height: 540px;
     max-width: 90vw;
     border-radius: 14px;
     /* Usunięto: box-shadow i background, aby usunąć ciemniejszy prostokąt */
