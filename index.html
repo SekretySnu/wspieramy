@@ -50,14 +50,11 @@
       transform: scale(1.05);
       box-shadow: 0 0 30px rgba(141, 167, 255, 0.9);
     }
-    iframe {
+    canvas {
       display: block;
       margin: 40px auto;
       width: 320px;
       height: 480px;
-      border-radius: 20px;
-      box-shadow: 0 0 25px rgba(141, 167, 255, 0.4);
-      border: none;
     }
     section {
       text-align: center;
@@ -85,12 +82,8 @@
     <a href="TUTAJ_WKLEJ_LINK_Z_PAYHIP" class="btn" target="_blank">Kup e-book</a>
   </header>
 
-  <!-- 🔮 Osadzony model 3D z Vectary -->
-  <iframe
-    src="https://app.vectary.com/p/5R9iyMuPGb7gPMe3mds5fn?embed=true&ui=light"
-    allowfullscreen
-    ar
-  ></iframe>
+  <!-- 🎨 Canvas z animowanym modelem 3D -->
+  <canvas id="ebook3D"></canvas>
 
   <section>
     <h2>Co znajdziesz w środku?</h2>
@@ -100,5 +93,56 @@
   <footer>
     © 2025 Sekrety Spokojnego Snu | Kontakt: twojemail@example.com
   </footer>
+
+  <!-- 🚀 Biblioteki Three.js i GLTFLoader -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.152.2/examples/js/loaders/GLTFLoader.js"></script>
+
+  <script>
+    const canvas = document.getElementById('ebook3D');
+    const scene = new THREE.Scene();
+
+    const camera = new THREE.PerspectiveCamera(45, canvas.clientWidth / canvas.clientHeight, 0.1, 1000);
+    camera.position.set(0, 0, 3);
+
+    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+    renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+    renderer.setPixelRatio(window.devicePixelRatio);
+
+    // Oświetlenie
+    const ambient = new THREE.AmbientLight(0xffffff, 0.6);
+    const point = new THREE.PointLight(0xffffff, 1);
+    point.position.set(5, 5, 5);
+    scene.add(ambient, point);
+
+    // Ładowanie modelu GLB
+    const loader = new THREE.GLTFLoader();
+    loader.load('ebook.glb', (gltf) => {
+      const model = gltf.scene;
+      model.scale.set(1.2, 1.2, 1.2);
+      model.rotation.y = Math.PI / 4;
+      scene.add(model);
+
+      // Animacja
+      function animate() {
+        requestAnimationFrame(animate);
+        model.rotation.y += 0.005;
+        model.rotation.x = Math.sin(Date.now() * 0.001) * 0.05;
+        renderer.render(scene, camera);
+      }
+      animate();
+    }, undefined, (error) => {
+      console.error('Błąd wczytywania modelu:', error);
+    });
+
+    // Responsywność
+    window.addEventListener('resize', () => {
+      const width = canvas.clientWidth;
+      const height = canvas.clientHeight;
+      camera.aspect = width / height;
+      camera.updateProjectionMatrix();
+      renderer.setSize(width, height);
+    });
+  </script>
 </body>
 </html>
