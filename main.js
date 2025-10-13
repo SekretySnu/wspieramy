@@ -4,6 +4,7 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 const canvas = document.getElementById('ebook3D');
 const scene = new THREE.Scene();
 scene.background = null; // Tło przezroczyste
+print("..");
 
 // Pobranie aktualnych rozmiarów canvasa
 const width = canvas.clientWidth || 360;
