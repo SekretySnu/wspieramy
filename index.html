@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Sekrety Spokojnego Snu — Ebook 3D</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
@@ -18,130 +18,187 @@
       background: linear-gradient(160deg, var(--night1), var(--night2));
       color: var(--text-light);
       overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
     header {
       text-align: center;
-      padding: 100px 20px 40px;
+      padding: 90px 20px 30px;
     }
     h1 {
-      font-size: 2.8em;
+      font-size: 2.6rem;
       background: linear-gradient(90deg, #aabaff, #dce3ff);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      margin: 0 0 16px;
     }
-    p {
-      font-size: 1.1em;
-      opacity: 0.85;
-      max-width: 600px;
-      margin: 0 auto 30px;
+    p.lead {
+      font-size: 1.05rem;
+      opacity: 0.9;
+      max-width: 640px;
+      margin: 0 auto 20px;
     }
     .btn {
       display: inline-block;
-      padding: 15px 40px;
+      padding: 12px 34px;
       background: var(--accent);
       color: white;
-      border-radius: 50px;
+      border-radius: 999px;
       text-decoration: none;
       font-weight: 600;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      box-shadow: 0 0 20px rgba(141, 167, 255, 0.6);
+      box-shadow: 0 0 18px rgba(141,167,255,0.55);
     }
-    .btn:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 30px rgba(141, 167, 255, 0.9);
+
+    /* canvas container - center + responsive sizing */
+    .viewer {
+      display: flex;
+      justify-content: center;
+      margin: 36px 16px;
     }
     canvas {
-      display: block;
-      margin: 40px auto;
-      width: 320px;
+      width: 360px;
       height: 480px;
+      max-width: 90vw;
+      border-radius: 14px;
+      box-shadow: 0 12px 40px rgba(10,12,30,0.6);
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.15));
+      display: block;
     }
+
     section {
       text-align: center;
-      padding: 60px 20px;
-      max-width: 800px;
-      margin: auto;
+      padding: 54px 20px;
+      max-width: 900px;
+      margin: 0 auto;
     }
-    h2 {
-      font-size: 2em;
-      color: #dfe6ff;
-      margin-bottom: 20px;
-    }
-    footer {
-      text-align: center;
-      padding: 30px;
-      font-size: 0.9em;
-      opacity: 0.7;
+    h2 { font-size: 1.8rem; margin-bottom: 14px; color: #dfe6ff; }
+    footer { text-align:center; padding: 26px; opacity: 0.75; font-size: 0.9rem; }
+
+    /* small screens tweak */
+    @media (max-width: 480px) {
+      header { padding-top: 56px; }
+      h1 { font-size: 1.9rem; }
+      canvas { height: 420px; }
     }
   </style>
 </head>
 <body>
   <header>
     <h1>Sekrety Spokojnego Snu</h1>
-    <p>Jak zasypiać szybciej i spać całą noc — poznaj praktyczny e-book, który zmieni Twoje noce w spokojne chwile relaksu.</p>
-    <a href="TUTAJ_WKLEJ_LINK_Z_PAYHIP" class="btn" target="_blank">Kup e-book</a>
+    <p class="lead">Jak zasypiać szybciej i spać całą noc — poznaj praktyczny e-book, który zmieni Twoje noce w spokojne chwile relaksu.</p>
+    <a class="btn" href="TUTAJ_WKLEJ_LINK_Z_PAYHIP" target="_blank" rel="noopener">Kup e-book</a>
   </header>
 
-  <!-- 🎨 Canvas z animowanym modelem 3D -->
-  <canvas id="ebook3D"></canvas>
+  <div class="viewer">
+    <canvas id="ebook3D"></canvas>
+  </div>
 
   <section>
     <h2>Co znajdziesz w środku?</h2>
     <p>Techniki relaksacyjne, oddechowe i plan 7 dni do odzyskania spokojnego snu.</p>
   </section>
 
-  <footer>
-    © 2025 Sekrety Spokojnego Snu | Kontakt: twojemail@example.com
-  </footer>
+  <footer>© 2025 Sekrety Spokojnego Snu | Kontakt: twojemail@example.com</footer>
 
-  <!-- 🚀 Biblioteki Three.js i GLTFLoader -->
+  <!-- three.js i loader (non-module, przez CDN) -->
   <script src="https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/three@0.152.2/examples/js/loaders/GLTFLoader.js"></script>
 
   <script>
+    // ------- BASIC SETUP -------
     const canvas = document.getElementById('ebook3D');
     const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0x0f1430); // delikatne tło sceny
 
-    const camera = new THREE.PerspectiveCamera(45, canvas.clientWidth / canvas.clientHeight, 0.1, 1000);
-    camera.position.set(0, 0, 3);
+    const camFov = 40;
+    const camera = new THREE.PerspectiveCamera(camFov, canvas.clientWidth / canvas.clientHeight, 0.1, 100);
+    camera.position.set(0, 0.35, 3.3);
 
-    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
-    renderer.setSize(canvas.clientWidth, canvas.clientHeight);
-    renderer.setPixelRatio(window.devicePixelRatio);
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+    function resizeRendererToDisplaySize() {
+      const pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+      const width = Math.min(window.innerWidth * 0.9, 640);
+      // set canvas CSS size (already controlled by CSS), then set drawing buffer size:
+      renderer.setPixelRatio(pixelRatio);
+      renderer.setSize(width, Math.round(width * 1.33), false); // height ~ 4:3
+      camera.aspect = width / (Math.round(width * 1.33));
+      camera.updateProjectionMatrix();
+    }
+    resizeRendererToDisplaySize();
 
-    // Oświetlenie
-    const ambient = new THREE.AmbientLight(0xffffff, 0.8);
-    const point = new THREE.PointLight(0xffffff, 1);
-    point.position.set(3, 3, 3);
-    scene.add(ambient, point);
+    // ------- LIGHTS -------
+    const hemi = new THREE.HemisphereLight(0xffffff, 0x444466, 0.9);
+    scene.add(hemi);
+    const dir = new THREE.DirectionalLight(0xffffff, 1.0);
+    dir.position.set(5, 6, 3);
+    scene.add(dir);
 
-    // Ładowanie modelu GLB
+    // small rim light for nicer silhouettes
+    const rim = new THREE.DirectionalLight(0x99bbff, 0.4);
+    rim.position.set(-3, 2, -2);
+    scene.add(rim);
+
+    // ------- LOADER -------
     const loader = new THREE.GLTFLoader();
-    loader.load('ebook.glb', (gltf) => {
-      const model = gltf.scene;
-      model.scale.set(1.2, 1.2, 1.2);
-      model.rotation.y = Math.PI / 4;
-      scene.add(model);
 
-      // Animacja
-      function animate() {
-        requestAnimationFrame(animate);
-        model.rotation.y += 0.006;
-        model.rotation.x = Math.sin(Date.now() * 0.001) * 0.05;
-        renderer.render(scene, camera);
+    // IMPORTANT: dla GitHub Pages używamy ścieżki absolutnej względem repo: /wspieramy/ebook.glb
+    // Jeśli Twój plik jest w folderze assets, dostosuj np. '/wspieramy/assets/ebook.glb'
+    const modelUrl = '/wspieramy/ebook.glb';
+
+    console.log('Próba załadowania modelu z:', modelUrl);
+
+    loader.load(modelUrl, (gltf) => {
+      const model = gltf.scene || gltf.scenes[0];
+      if (!model) {
+        console.error('Model wczytany, ale nie znaleziono scene w gltf.');
+        return;
       }
-      animate();
-    }, undefined, (error) => {
-      console.error('Błąd wczytywania modelu:', error);
+
+      // dopasuj te wartości jeśli trzeba
+      model.scale.set(1.25, 1.25, 1.25);
+      model.position.set(0, -0.25, 0);
+      model.rotation.y = Math.PI / 6;
+
+      scene.add(model);
+      console.log('Model załadowany poprawnie.');
+
+      // animacja obrotu + delikatne kołysanie
+      const animateModel = () => {
+        requestAnimationFrame(animateModel);
+        model.rotation.y += 0.006;
+        model.rotation.x = Math.sin(Date.now() * 0.001) * 0.03;
+        renderer.render(scene, camera);
+      };
+      animateModel();
+
+    }, (xhr) => {
+      // postęp ładowania
+      if (xhr && xhr.total) {
+        const pct = Math.round(xhr.loaded / xhr.total * 100);
+        console.log('Ładowanie modelu: ' + pct + '%');
+      }
+    }, (error) => {
+      console.error('Błąd ładowania modelu GLB:', error);
+      // opcjonalnie: pokaż prosty obiekt testowy, aby upewnić się, że renderer działa
+      // uncomment poniższy blok, aby zobaczyć testową kostkę gdy model się nie załaduje:
+      /*
+      const geometry = new THREE.BoxGeometry(0.8, 0.8, 0.8);
+      const material = new THREE.MeshStandardMaterial({ color: 0x8da7ff });
+      const cube = new THREE.Mesh(geometry, material);
+      scene.add(cube);
+      const animateCube = () => {
+        requestAnimationFrame(animateCube);
+        cube.rotation.x += 0.01;
+        cube.rotation.y += 0.01;
+        renderer.render(scene, camera);
+      };
+      animateCube();
+      */
     });
 
-    // Responsywność
+    // resize handling
     window.addEventListener('resize', () => {
-      const width = canvas.clientWidth;
-      const height = canvas.clientHeight;
-      camera.aspect = width / height;
-      camera.updateProjectionMatrix();
-      renderer.setSize(width, height);
+      resizeRendererToDisplaySize();
     });
   </script>
 </body>
