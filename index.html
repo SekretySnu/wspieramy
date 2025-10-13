@@ -1,182 +1,211 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Zasnę w 10 minut — Ebook o lepszym śnie</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sekrety Spokojnego Snu — Jak zasypiać szybciej i spać całą noc</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary: #6a80f5;
-      --secondary: #b8c2ff;
-      --bg: #f5f7ff;
-      --text: #333;
+      --night1: #101431;
+      --night2: #1e1f4b;
+      --accent: #8da7ff;
+      --text-light: #e6ebff;
+      --button-glow: 0 0 20px rgba(141, 167, 255, 0.6);
     }
 
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      scroll-behavior: smooth;
+      box-sizing: border-box;
     }
 
     body {
-      font-family: "Inter", sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
+      font-family: 'Poppins', sans-serif;
+      color: var(--text-light);
+      background: linear-gradient(160deg, var(--night1), var(--night2));
       overflow-x: hidden;
-    }
-
-    header {
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      color: white;
-      text-align: center;
-      padding: 100px 20px 120px;
+      min-height: 100vh;
       position: relative;
     }
 
-    header::after {
+    /* Efekt gwiazdek */
+    body::before {
       content: "";
       position: absolute;
-      bottom: -1px;
-      left: 0;
-      width: 100%;
-      height: 60px;
-      background: white;
-      clip-path: ellipse(70% 100% at 50% 100%);
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(2px 2px at 20% 30%, white, transparent),
+                  radial-gradient(1px 1px at 80% 70%, white, transparent),
+                  radial-gradient(1.5px 1.5px at 40% 80%, white, transparent),
+                  radial-gradient(1px 1px at 60% 10%, white, transparent),
+                  radial-gradient(2px 2px at 70% 50%, white, transparent);
+      background-size: 200px 200px;
+      opacity: 0.3;
+      animation: stars 60s linear infinite;
+    }
+
+    @keyframes stars {
+      from { transform: translateY(0); }
+      to { transform: translateY(-200px); }
+    }
+
+    header {
+      text-align: center;
+      padding: 120px 20px 80px;
+      position: relative;
+      z-index: 2;
     }
 
     header h1 {
-      font-size: 3em;
-      margin-bottom: 15px;
+      font-size: 2.8em;
+      font-weight: 600;
+      background: linear-gradient(90deg, #aabaff, #dce3ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 20px;
     }
 
     header p {
       font-size: 1.2em;
+      opacity: 0.85;
       max-width: 600px;
       margin: 0 auto 40px;
-      opacity: 0.9;
     }
 
     .btn {
       display: inline-block;
-      background: white;
-      color: var(--primary);
       padding: 15px 40px;
-      border-radius: 50px;
-      text-decoration: none;
+      background: var(--accent);
+      color: #fff;
+      border-radius: 40px;
       font-weight: 600;
+      text-decoration: none;
       font-size: 1.1em;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      transition: all 0.3s;
+      box-shadow: var(--button-glow);
+      transition: 0.3s ease;
     }
 
     .btn:hover {
-      transform: translateY(-3px);
-      background: var(--secondary);
-      color: white;
+      transform: scale(1.05);
+      box-shadow: 0 0 30px rgba(141, 167, 255, 0.9);
     }
 
     section {
+      text-align: center;
       padding: 80px 20px;
       max-width: 900px;
       margin: auto;
-      text-align: center;
+      position: relative;
+      z-index: 2;
     }
 
     h2 {
       font-size: 2em;
+      color: #dfe6ff;
       margin-bottom: 20px;
-      color: var(--primary);
     }
 
     ul {
       text-align: left;
       display: inline-block;
-      margin-top: 20px;
       font-size: 1.1em;
+      opacity: 0.9;
+      margin-top: 20px;
     }
 
     li {
-      margin-bottom: 10px;
-      padding-left: 1em;
+      margin-bottom: 12px;
+      list-style: none;
+      position: relative;
+      padding-left: 25px;
+    }
+
+    li::before {
+      content: "🌙";
+      position: absolute;
+      left: 0;
     }
 
     .review {
-      background: white;
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 20px;
-      padding: 30px;
-      margin: 20px 0;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      padding: 25px;
+      margin: 20px auto;
+      max-width: 600px;
       font-style: italic;
+      color: #e9ecff;
     }
 
     footer {
-      background: #eee;
-      color: #666;
-      text-align: center;
+      background: rgba(255, 255, 255, 0.05);
       padding: 30px;
+      text-align: center;
       font-size: 0.9em;
+      opacity: 0.7;
     }
 
-    /* Animacja pojawiania */
+    img.cover {
+      width: 250px;
+      border-radius: 20px;
+      box-shadow: 0 0 40px rgba(141, 167, 255, 0.3);
+      margin: 20px 0 40px;
+    }
+
+    /* Efekt fade-in */
     .fade-in {
       opacity: 0;
-      transform: translateY(30px);
-      transition: all 0.8s ease-out;
+      transform: translateY(40px);
+      transition: all 0.9s ease;
     }
     .fade-in.visible {
       opacity: 1;
       transform: translateY(0);
     }
 
-    /* Responsywność */
     @media (max-width: 600px) {
-      header h1 { font-size: 2.2em; }
-      .btn { padding: 12px 30px; font-size: 1em; }
+      header h1 { font-size: 2em; }
     }
   </style>
 </head>
 <body>
+
   <header>
-    <h1>Zasnę w 10 minut</h1>
-    <p>Odkryj prosty, sprawdzony sposób na spokojny sen bez stresu i bez leków.</p>
-    <a class="btn" href="TUTAJ_WKLEJ_LINK_Z_PAYHIP" target="_blank">Kup teraz</a>
+    <h1>Sekrety Spokojnego Snu</h1>
+    <p>Jak zasypiać szybko i spać całą noc — praktyczny e-book, który pomoże Ci odnaleźć wewnętrzny spokój i odzyskać zdrowy sen.</p>
+    <img src="okladka.jpg" alt="Okładka e-booka Sekrety Spokojnego Snu" class="cover">
+    <a href="TUTAJ_WKLEJ_LINK_Z_PAYHIP" class="btn" target="_blank">Kup e-book</a>
   </header>
 
   <section class="fade-in">
-    <h2>Co znajdziesz w środku?</h2>
+    <h2>W e-booku znajdziesz:</h2>
     <ul>
-      <li>✔️ 7-dniowy plan zasypiania</li>
-      <li>✔️ Techniki oddechowe i relaksacyjne</li>
-      <li>✔️ Wieczorny rytuał bez stresu</li>
-      <li>✔️ Metody wyciszenia myśli</li>
+      <li>Plan na 7 dni, który przywróci Ci spokojny rytm snu</li>
+      <li>Techniki relaksacji i oddechu pomagające zasnąć w kilka minut</li>
+      <li>Wieczorne rytuały wyciszenia ciała i umysłu</li>
+      <li>Proste sposoby na ograniczenie gonitwy myśli</li>
     </ul>
   </section>
 
   <section class="fade-in">
     <h2>Opinie czytelników</h2>
-    <div class="review">„W końcu zasypiam bez stresu! Ten e-book to był strzał w dziesiątkę.” — Ania</div>
-    <div class="review">„Nie wierzyłem, że coś tak prostego zadziała. Teraz śpię jak dziecko.” — Tomek</div>
+    <div class="review">„Zasypiam w 10 minut, choć wcześniej potrafiłem nie spać całą noc. Magia!” — Kamil</div>
+    <div class="review">„Nie tylko lepiej śpię, ale też budzę się wypoczęta. Cudowny e-book!” — Kasia</div>
   </section>
 
   <section class="fade-in">
-    <h2>O autorze</h2>
-    <p>Jestem pasjonatem zdrowego stylu życia i snu. Po latach problemów z bezsennością stworzyłem praktyczny przewodnik, który pomógł już setkom osób spokojnie zasypiać.</p>
-  </section>
-
-  <section class="fade-in">
-    <h2>Gotowy na spokojne noce?</h2>
-    <a class="btn" href="TUTAJ_WKLEJ_LINK_Z_PAYHIP" target="_blank">Kup e-book — 39 zł</a>
+    <h2>Gotowy na spokojny sen?</h2>
+    <a href="TUTAJ_WKLEJ_LINK_Z_PAYHIP" class="btn" target="_blank">Kup teraz — 39 zł</a>
   </section>
 
   <footer>
-    © 2025 Zasnę w 10 minut | Kontakt: twojemail@example.com
+    © 2025 Sekrety Spokojnego Snu | Kontakt: twojemail@example.com
   </footer>
 
   <script>
-    // animacja pojawiania elementów
-    const elements = document.querySelectorAll('.fade-in');
+    // Efekt fade-in
+    const items = document.querySelectorAll('.fade-in');
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -184,7 +213,7 @@
         }
       });
     });
-    elements.forEach(el => observer.observe(el));
+    items.forEach(i => observer.observe(i));
   </script>
 </body>
 </html>
