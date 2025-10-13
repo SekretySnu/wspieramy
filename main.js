@@ -1,13 +1,5 @@
-// main.js - Poprawiony import, aby upewnić się, że ścieżki są absolutne
 import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.module.js';
-
-// Zmień ścieżkę do GLTFLoader, upewniając się, że jest absolutna
 import { GLTFLoader } from 'https://cdn.jsdelivr.net/npm/three@0.155.0/examples/jsm/loaders/GLTFLoader.js';
-
-// Reszta kodu:
-const canvas = document.getElementById('ebook3D');
-// ... (cały reszta kodu main.js jest poprawna dla animacji)
-
 
     const canvas = document.getElementById('ebook3D');
     const scene = new THREE.Scene();
